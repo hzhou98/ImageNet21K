@@ -75,11 +75,11 @@ import torch
 import timm
 
 try:
-    model = timm.create_model('${model_name}', pretrained=True)
-    torch.save(model.state_dict(), '${output_file}')
-    print(f"✓ {model_name} downloaded successfully")
+    model = timm.create_model('$model_name', pretrained=True)
+    torch.save(model.state_dict(), '$output_file')
+    print(f"✓ $model_name downloaded successfully")
 except Exception as e:
-    print(f"✗ Failed to download ${model_name}: {e}")
+    print(f"✗ Failed to download $model_name: {e}")
     exit(1)
 EOF
     else

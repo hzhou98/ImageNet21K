@@ -5,7 +5,27 @@ from collections import OrderedDict
 from src_files.models.tresnet.layers.anti_aliasing import AntiAliasDownsampleLayer
 from .layers.avg_pool import FastAvgPool2d
 from .layers.general_layers import SEModule, SpaceToDepthModule
-from inplace_abn import InPlaceABN
+
+
+class ABN(nn.Module):
+    """Activated Batch Normalization - replacement for InPlaceABN"""
+    def __init__(self, num_features, activation="leaky_relu", activation_param=1e-2):
+        super(ABN, self).__init__()
+        self.bn = nn.BatchNorm2d(num_features)
+        
+        if activation == "leaky_relu":
+            self.activation = nn.LeakyReLU(negative_slope=activation_param, inplace=True)
+        elif activation == "relu":
+            self.activation = nn.ReLU(inplace=True)
+        elif activation == "identity":
+            self.activation = nn.Identity()
+        else:
+            self.activation = nn.ReLU(inplace=True)
+    
+    def forward(self, x):
+        x = self.bn(x)
+        x = self.activation(x)
+        return x
 
 class bottleneck_head(nn.Module):
     def __init__(self, num_features, num_classes, bottleneck_features=200):
@@ -33,7 +53,7 @@ def conv2d_ABN(ni, nf, stride, activation="leaky_relu", kernel_size=3, activatio
     return nn.Sequential(
         nn.Conv2d(ni, nf, kernel_size=kernel_size, stride=stride, padding=kernel_size // 2, groups=groups,
                   bias=False),
-        InPlaceABN(num_features=nf, activation=activation, activation_param=activation_param)
+        ABN(num_features=nf, activation=activation, activation_param=activation_param)
     )
 
 
@@ -171,7 +191,7 @@ class TResNet(Module):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='leaky_relu')
-            elif isinstance(m, nn.BatchNorm2d) or isinstance(m, InPlaceABN):
+            elif isinstance(m, nn.BatchNorm2d):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
 
