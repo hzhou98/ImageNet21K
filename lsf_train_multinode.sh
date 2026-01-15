@@ -48,9 +48,9 @@ OUTPUT_DIR="./output/${MODEL_NAME}_$(date +%Y%m%d_%H%M%S)"
 mkdir -p ${OUTPUT_DIR}
 mkdir -p logs
 
-module load cuda/11.7
-module load gcc/9.3.0
-module load python/3.9
+module load cuda11.4
+module load conda3/202011
+conda activate imagenet21k_py308
 
 export NCCL_DEBUG=INFO
 export OMP_NUM_THREADS=4
