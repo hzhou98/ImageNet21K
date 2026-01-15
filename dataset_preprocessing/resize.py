@@ -32,7 +32,7 @@ def resize_image(inputFileName, output_size=224, input_str='imagenet21k_new', ou
 
 
 def main():
-    path = '/mnt/imagenet21k_new/' # might need to edit this
+    path = '/research/groups/yu3grp/projects/scRNASeq/yu3grp/hzhou98/PublicDataSets/ImageNet21K/imagenet21k_new/' # might need to edit this
     import os
     from glob import glob
     print("scanning files...")
