@@ -33,7 +33,7 @@ TREE_PATH="./resources/imagenet21k_miil_tree.pth"
 
 # Model settings
 MODEL_NAME="tresnet_m"
-MODEL_PATH="./pretrained_models/${MODEL_NAME}_1k.pth"
+MODEL_PATH="./pretrained_models/${MODEL_NAME}_21k_yulab.pth"
 
 # Hyperparameters
 BATCH_SIZE=64
