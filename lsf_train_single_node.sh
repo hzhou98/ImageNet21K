@@ -11,13 +11,13 @@
 #BSUB -W 48:00
 #BSUB -n 4
 #BSUB -R "span[hosts=1]"
-#BSUB -gpu "num=4:mode=exclusive_process:mps=no:j_exclusive=yes"
+#BSUB -gpu "num=2:mode=exclusive_process:mps=no:j_exclusive=yes"
 #BSUB -q gpu
 #BSUB -R "rusage[mem=32000]"
 
 # Description:
 # Simplified script for single-node multi-GPU training
-# Default: 4 GPUs on 1 node
+# Default: 2 GPUs on 1 node
 # For multi-node training, use lsf_train_multi_gpu.sh
 
 # ========================================
@@ -48,7 +48,7 @@ NUM_CLASSES=11221
 # GPU configuration
 NGPUS=$(nvidia-smi --list-gpus | wc -l)
 if [ -z "$NGPUS" ]; then
-    NGPUS=4  # Default fallback
+    NGPUS=2  # Default fallback
 fi
 
 # Output

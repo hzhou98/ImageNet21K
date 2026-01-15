@@ -11,13 +11,13 @@
 #BSUB -W 48:00
 #BSUB -n 32
 #BSUB -R "span[ptile=8]"
-#BSUB -gpu "num=4:mode=exclusive_process:mps=no:j_exclusive=yes"
+#BSUB -gpu "num=2:mode=exclusive_process:mps=no:j_exclusive=yes"
 #BSUB -q gpu
 #BSUB -R "rusage[mem=16000]"
 
 # Description:
 # This script trains ImageNet-21K models using multiple GPUs across multiple nodes
-# Default configuration: 4 nodes x 4 GPUs = 16 GPUs total
+# Default configuration: 4 nodes x 2 GPUs = 8 GPUs total
 # Adjust -n, -R span[ptile=X], and -gpu num=X based on your cluster resources
 
 # ========================================
@@ -36,7 +36,7 @@ MODEL_NAME="tresnet_m"  # Options: tresnet_m, tresnet_l, resnet50, mobilenetv3_l
 MODEL_PATH="./pretrained_models/${MODEL_NAME}_1k.pth"  # ImageNet-1K pretrained weights
 
 # Training hyperparameters
-BATCH_SIZE=64  # Per GPU batch size
+BATCH_SIZE=256  # Per GPU batch size
 EPOCHS=80
 LR=3e-4
 WEIGHT_DECAY=1e-4
@@ -72,7 +72,7 @@ export MASTER_PORT=29500
 
 # Get world size (total number of GPUs)
 export WORLD_SIZE=$(echo $LSB_HOSTS | wc -w)
-export NGPUS_PER_NODE=4  # GPUs per node
+export NGPUS_PER_NODE=2  # GPUs per node
 
 # NCCL settings for better performance
 export NCCL_DEBUG=INFO

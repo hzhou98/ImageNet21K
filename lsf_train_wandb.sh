@@ -10,7 +10,7 @@
 #BSUB -W 48:00
 #BSUB -n 4
 #BSUB -R "span[hosts=1]"
-#BSUB -gpu "num=4:mode=exclusive_process:mps=no:j_exclusive=yes"
+#BSUB -gpu "num=2:mode=exclusive_process:mps=no:j_exclusive=yes"
 #BSUB -q gpu
 #BSUB -R "rusage[mem=32000]"
 
@@ -42,7 +42,7 @@ NUM_CLASSES=11221
 # GPU configuration
 NGPUS=$(nvidia-smi --list-gpus 2>/dev/null | wc -l)
 if [ -z "$NGPUS" ] || [ "$NGPUS" -eq 0 ]; then
-    NGPUS=4  # Default fallback
+    NGPUS=2  # Default fallback
 fi
 
 # Output
