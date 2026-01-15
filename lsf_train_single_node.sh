@@ -28,7 +28,7 @@
 TRAIN_SCRIPT="train_semantic_softmax.py"  # or "train_single_label.py"
 
 # Paths
-DATA_PATH="/research/groups/yu3grp/projects/scRNASeq/yu3grp/hzhou98/PublicDataSets/ImageNet21K/fall11"
+DATA_PATH="/research/groups/yu3grp/projects/scRNASeq/yu3grp/hzhou98/PublicDataSets/ImageNet21K/imagenet21k_resized_new"
 TREE_PATH="./resources/imagenet21k_miil_tree.pth"
 
 # Model settings
