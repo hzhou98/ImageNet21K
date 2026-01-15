@@ -1,6 +1,19 @@
-torch==1.7.1
-torchvision
-git+https://github.com/mapillary/inplace_abn.git@v1.0.12
-git+https://github.com/rwightman/pytorch-image-models.git
+# Updated for Python 3.11 compatibility
+# PyTorch 2.x maintains backward compatibility with 1.x APIs
+torch>=2.1.0
+torchvision>=0.16.0
+
+# Inplace ABN - use PyPI package instead of git
+inplace-abn>=1.1.0
+
+# PyTorch Image Models - use PyPI package
+timm>=0.9.0
+
+# Data augmentation
 randaugment
+
+# Experiment tracking
 wandb
+
+# Note: For CUDA support, install with:
+# pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu118
