@@ -81,7 +81,7 @@ fi
 
 # Data path
 echo ""
-DEFAULT_DATA_PATH="/research/groups/yu3grp/projects/scRNASeq/yu3grp/hzhou98/PublicDataSets/ImageNet21K/fall11"
+DEFAULT_DATA_PATH="/research/groups/yu3grp/projects/scRNASeq/yu3grp/hzhou98/PublicDataSets/ImageNet21K/imagenet21k_resized_new"
 read -p "Data path [default: $DEFAULT_DATA_PATH]: " user_data
 if [ ! -z "$user_data" ]; then
     DATA_PATH=$user_data
