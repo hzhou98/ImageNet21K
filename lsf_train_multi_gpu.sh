@@ -12,7 +12,7 @@
 #BSUB -n 32
 #BSUB -R "span[ptile=8]"
 #BSUB -gpu "num=2:mode=exclusive_process:mps=no:j_exclusive=yes"
-#BSUB -q gpu
+#BSUB -q gpu_short
 #BSUB -R "rusage[mem=16000]"
 
 # Description:
