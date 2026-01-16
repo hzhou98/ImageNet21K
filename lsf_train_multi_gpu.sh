@@ -8,7 +8,6 @@
 #BSUB -J imagenet21k_train
 #BSUB -o logs/train_%J.out
 #BSUB -e logs/train_%J.err
-#BSUB -W 48:00
 #BSUB -n 32
 #BSUB -R "span[ptile=8]"
 #BSUB -gpu "num=2:mode=exclusive_process:mps=no:j_exclusive=yes"
