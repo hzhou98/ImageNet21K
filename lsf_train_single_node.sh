@@ -9,7 +9,7 @@
 #BSUB -o logs/train_%J.out
 #BSUB -e logs/train_%J.err
 #BSUB -W 48:00
-#BSUB -n 4
+#BSUB -n 2
 #BSUB -R "span[hosts=1]"
 #BSUB -gpu "num=2:mode=exclusive_process:mps=no:j_exclusive=yes"
 #BSUB -q gpu
